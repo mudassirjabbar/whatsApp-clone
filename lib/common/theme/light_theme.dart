@@ -18,5 +18,14 @@ ThemeData lightTheme() {
         shadowColor: Colors.transparent,
       ),
     ),
+    bottomSheetTheme: const BottomSheetThemeData(
+      backgroundColor: Coloors.backgroundLight,
+      modalBackgroundColor: Coloors.backgroundLight,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20),
+        ),
+      ),
+    ),
   );
 }

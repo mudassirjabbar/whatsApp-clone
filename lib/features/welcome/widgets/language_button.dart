@@ -4,9 +4,28 @@ import 'package:whats_app/common/extension/custom_theme_extension.dart';
 import '../../../common/utils/colors.dart';
 
 class LanguageButton extends StatelessWidget {
-  const LanguageButton({
-    Key? key,
-  }) : super(key: key);
+  const LanguageButton({Key? key}) : super(key: key);
+
+  showBottomSheet(context) {
+    return showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10),
+            child: Column(
+              children: [
+                Container(
+                  width: 30,
+                  height: 4,
+                  decoration: BoxDecoration(
+                      color: context.theme.greyColor!.withOpacity(0.4),
+                      borderRadius: BorderRadius.circular(5)),
+                )
+              ],
+            ),
+          );
+        });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +33,7 @@ class LanguageButton extends StatelessWidget {
       color: context.theme.langBtnBgColor,
       borderRadius: BorderRadius.circular(20),
       child: InkWell(
-        onTap: () {},
+        onTap: () => showBottomSheet(context),
         borderRadius: BorderRadius.circular(20),
         splashFactory: NoSplash.splashFactory,
         highlightColor: context.theme.langBtnHighlightColor,
