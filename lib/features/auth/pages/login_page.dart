@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:whats_app/common/extension/custom_theme_extension.dart';
 import 'package:whats_app/common/utils/colors.dart';
 import 'package:whats_app/features/auth/widgets/text_form_fields.dart';
+import 'package:whats_app/features/welcome/widgets/custom_elevated_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -108,8 +109,23 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ],
             ),
-          )
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Text(
+            'Carrier charges may apply',
+            style: TextStyle(
+              color: context.theme.greyColor,
+            ),
+          ),
         ],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: CustomElevatedButton(
+        onPressed: () {},
+        text: 'NEXT',
+        buttonWidth: 90,
       ),
     );
   }
