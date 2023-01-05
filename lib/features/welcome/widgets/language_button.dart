@@ -13,6 +13,7 @@ class LanguageButton extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
                   width: 30,
@@ -20,7 +21,65 @@ class LanguageButton extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: context.theme.greyColor!.withOpacity(0.4),
                       borderRadius: BorderRadius.circular(5)),
-                )
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Row(
+                    children: [
+                      const SizedBox(
+                        width: 20,
+                      ),
+                      IconButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        splashColor: Colors.transparent,
+                        splashRadius: 22,
+                        iconSize: 22,
+                        constraints: const BoxConstraints(minWidth: 40),
+                        icon: const Icon(
+                          Icons.close_outlined,
+                          color: Coloors.greyDark,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      const Text(
+                        'App Language',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                Divider(
+                  color: context.theme.greyColor!.withOpacity(0.3),
+                  thickness: .5,
+                ),
+                RadioListTile(
+                  value: true,
+                  groupValue: true,
+                  onChanged: (value) {},
+                  activeColor: Coloors.greenDark,
+                  title: const Text('English'),
+                  subtitle: const Text('phone"s" language'),
+                ),
+                RadioListTile(
+                  value: true,
+                  groupValue: false,
+                  onChanged: (value) {},
+                  activeColor: Coloors.greenDark,
+                  title: const Text(' አማርኛ'),
+                  subtitle: const Text('Amrahic'),
+                ),
               ],
             ),
           );
