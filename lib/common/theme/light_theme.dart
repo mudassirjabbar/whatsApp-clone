@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:whats_app/common/utils/colors.dart';
 
 import '../extension/custom_theme_extension.dart';
@@ -18,6 +19,13 @@ ThemeData lightTheme() {
         shadowColor: Colors.transparent,
       ),
     ),
+    appBarTheme: const AppBarTheme(
+      titleTextStyle: TextStyle(fontSize: 18),
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark,
+      ),
+    ),
     bottomSheetTheme: const BottomSheetThemeData(
       backgroundColor: Coloors.backgroundLight,
       modalBackgroundColor: Coloors.backgroundLight,
@@ -25,6 +33,12 @@ ThemeData lightTheme() {
         borderRadius: BorderRadius.vertical(
           top: Radius.circular(20),
         ),
+      ),
+    ),
+    dialogBackgroundColor: Coloors.backgroundLight,
+    dialogTheme: DialogTheme(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
       ),
     ),
   );

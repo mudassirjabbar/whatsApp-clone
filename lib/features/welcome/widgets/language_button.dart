@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whats_app/common/extension/custom_theme_extension.dart';
+import 'package:whats_app/widgets/custom_icon_button.dart';
 
 import '../../../common/utils/colors.dart';
 
@@ -33,16 +34,9 @@ class LanguageButton extends StatelessWidget {
                       const SizedBox(
                         width: 20,
                       ),
-                      IconButton(
+                      CustomIconButton(
                         onPressed: () => Navigator.of(context).pop(),
-                        splashColor: Colors.transparent,
-                        splashRadius: 22,
-                        iconSize: 22,
-                        constraints: const BoxConstraints(minWidth: 40),
-                        icon: const Icon(
-                          Icons.close_outlined,
-                          color: Coloors.greyDark,
-                        ),
+                        icon: Icons.close_outlined,
                       ),
                       const SizedBox(
                         width: 10,

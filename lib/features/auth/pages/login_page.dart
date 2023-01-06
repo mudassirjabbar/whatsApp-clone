@@ -1,8 +1,12 @@
+import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:whats_app/common/extension/custom_theme_extension.dart';
+import 'package:whats_app/common/helper/show_alert_dialog.dart';
 import 'package:whats_app/common/utils/colors.dart';
 import 'package:whats_app/features/auth/widgets/text_form_fields.dart';
-import 'package:whats_app/features/welcome/widgets/custom_elevated_button.dart';
+import 'package:whats_app/widgets/custom_elevated_button.dart';
+
+import '../../../widgets/custom_icon_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -17,6 +21,67 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController countryCodeController =
       TextEditingController(text: '251');
   final TextEditingController phoneNumberController = TextEditingController();
+
+  sendCodeToPhone() {
+    final phone = phoneNumberController.text;
+    final name = countryCodeController.text;
+
+    if (phone.isEmpty) {
+      showAlertDialog(
+        context: context,
+        message: "Please enter your phone number",
+      );
+    } else if (phone.length < 9) {
+      showAlertDialog(
+        context: context,
+        message:
+            "The phone number you entered is too short for the country: $name.\n\nInclude your area code if you haven't",
+      );
+    } else if (phone.length > 10) {
+      showAlertDialog(
+        context: context,
+        message:
+            "The phone number you entered is too long for this country: $name.",
+      );
+    }
+  }
+
+  showCountryCodePicker() {
+    showCountryPicker(
+      context: context,
+      showPhoneCode: true,
+      favorite: ['ET'],
+      countryListTheme: CountryListThemeData(
+        bottomSheetHeight: 600,
+        backgroundColor: Theme.of(context).backgroundColor,
+        flagSize: 22,
+        borderRadius: BorderRadius.circular(20),
+        textStyle: TextStyle(color: context.theme.greyColor),
+        inputDecoration: InputDecoration(
+          labelStyle: TextStyle(color: context.theme.greyColor),
+          prefixIcon: const Icon(
+            Icons.language,
+            color: Coloors.greenDark,
+          ),
+          hintText: 'Search country code or name',
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: context.theme.greyColor!.withOpacity(0.2),
+            ),
+          ),
+          focusedBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Coloors.greenDark,
+            ),
+          ),
+        ),
+      ),
+      onSelect: (country) {
+        countryNameController.text = country.name;
+        countryCodeController.text = country.countryCode;
+      },
+    );
+  }
 
   @override
   void dispose() {
@@ -38,17 +103,9 @@ class _LoginPageState extends State<LoginPage> {
         ),
         centerTitle: true,
         actions: [
-          IconButton(
+          CustomIconButton(
+            icon: Icons.more_vert,
             onPressed: () {},
-            icon: Icon(
-              Icons.more_vert,
-              color: context.theme.greyColor,
-            ),
-            iconSize: 22,
-            splashRadius: 22,
-            splashColor: Colors.transparent,
-            padding: EdgeInsets.zero,
-            constraints: const BoxConstraints(minWidth: 40),
           ),
         ],
       ),
@@ -77,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
             child: CustomTextField(
               controller: countryNameController,
               readOnly: true,
-              onTap: () {},
+              onTap: showCountryCodePicker,
               suffixIcon: const Icon(
                 Icons.arrow_drop_down,
                 color: Coloors.greenDark,
@@ -93,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                   width: 70,
                   child: CustomTextField(
                     controller: countryCodeController,
-                    onTap: () {},
+                    onTap: showCountryCodePicker,
                     prefixText: '+',
                     readOnly: true,
                   ),
@@ -123,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: CustomElevatedButton(
-        onPressed: () {},
+        onPressed: sendCodeToPhone,
         text: 'NEXT',
         buttonWidth: 90,
       ),

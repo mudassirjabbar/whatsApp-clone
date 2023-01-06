@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:whats_app/common/extension/custom_theme_extension.dart';
 import 'package:whats_app/common/utils/colors.dart';
 
-import '../widgets/custom_elevated_button.dart';
+import '../../../widgets/custom_elevated_button.dart';
 import '../widgets/language_button.dart';
 import '../widgets/privacy_and_terms.dart';
 
